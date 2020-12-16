@@ -1,5 +1,5 @@
 
-program Ordenamento;
+program BuscaPrimaria;
 type vet = array [1..3] of integer;
 var valor, aux, i, dim,j: integer; vetor: vet;
  
