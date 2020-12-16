@@ -6,13 +6,12 @@ URL: <https://www.onlinegdb.com/online_pascal_compiler#>
 Programas desenvolvidos nos estudo de Estrutura de Dados
 
 - Função
-- Estrutura de Dados: Vetor
+- Vetor
 - Busca Primária
 - Pilha
 - Fila
-- Lista Encadeada
 - Lista Encadeada Simples
 - Lista Encadeada Dupla
 - Lógico Recursiva
 - Árvores
-- Ávore Binária de Busca
+- Árvore Binária de Busca
