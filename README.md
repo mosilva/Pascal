@@ -1,6 +1,6 @@
 # Pascal
 
-Compilador utilizado: Online Pascal Compiler
+Compilador utilizado - Online Pascal Compiler
 URL: <https://www.onlinegdb.com/online_pascal_compiler#>
 
 Programas desenvolvidos nos estudo de Estrutura de Dados
