@@ -1,0 +1,60 @@
+Program PilhaBase;
+
+const max = 3;
+type pilha = record
+        obj: array  [1..max] of string;
+        j: integer;
+end;
+
+var  p1: pilha;
+     i: integer;
+     objeto:string;
+
+procedure  INIT (var p:pilha);
+//criar  a pilha
+begin   
+        p.j := 0;
+end;
+
+
+procedure PUSH(var p:pilha; ob:string);
+// adiciona elementos na pilha
+begin
+        p.j :=p.j +1;
+        p.obj[p.j] := ob;
+end;
+
+procedure POP(var p:pilha);
+begin
+    p.j := p.j-1;
+end;
+
+function ISEMPTY(p:pilha):boolean;
+begin
+    if  p.j = 0 then ISEMPTY := true
+    else ISEMPTY := false;  
+end;    
+
+function ISFULL(p:pilha;max:integer):boolean;
+begin
+    if p.j = max then
+            ISFULL:= true
+    else 
+        ISFULL:= false;
+end;
+    
+begin
+    INIT(p1);
+    while (ISFULL(p1,max)<> true) do
+        begin
+            readln(objeto);
+            PUSH (p1,objeto);
+        end;
+        
+writeln ('saida da pilha');
+while (ISEMPTY  (P1) = false) do
+    begin
+        writeln(p1.obj[p1.j]);
+        POP(p1);
+    end;
+end.
