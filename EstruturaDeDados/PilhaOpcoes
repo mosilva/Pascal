@@ -1,0 +1,94 @@
+program PilhaOpcoes;
+
+const max = 10;
+type pilha = record
+        obj: array  [1..max] of string;
+        j: integer;
+end;
+
+var  p1: pilha;
+     i: integer;
+     objeto:string;
+
+procedure  INIT (var p:pilha);
+//criar  a pilha
+begin   
+        p.j := 0;
+end;
+
+
+procedure PUSH(var p:pilha; ob:string);
+// adiciona elementos na pilha
+begin
+        p.j :=p.j +1;
+        p.obj[p.j] := ob;
+end;
+
+procedure POP(var p:pilha);
+begin
+    p.j := p.j-1;
+end;
+
+function ISEMPTY(p:pilha):boolean;
+begin
+    if  p.j = 0 then ISEMPTY := true
+    else ISEMPTY := false;  
+end;    
+
+function ISFULL(p:pilha;max:integer):boolean;
+begin
+    if p.j = max then
+            ISFULL:= true
+    else 
+        ISFULL:= false;
+end;
+
+Function Q(p: pilha): integer;
+begin
+	Q:=p.j;
+end;
+
+function V(p:pilha):string;
+var c,t: integer;
+begin
+    t := p.j;
+    for c:=1 to p.j do
+      begin
+        write(p.obj[t],' ');
+        t := t-1;
+      end;    
+end;    
+
+begin
+INIT(p1);
+REPEAT	
+    writeln();	
+    writeln ('1 - Adicione o elemento');
+    writeln ('2 - Retirar um elemento');
+    writeln ('3 - Ver quantidade de elementos');
+    writeln ('4 - Encerramento do processo de pilha');
+    write ('digite aqui: ');
+    readln(i);
+    if(i=1) then
+        if(ISFULL(p1,max)<> true) then
+            begin
+                write('Adicione elemento na pilha: ');
+                readln(objeto);
+                PUSH (p1,objeto);
+            end
+        else
+            writeln('Pilha cheia, não é possível empilhar! Stack Overflow!');
+   if(i=2) then
+        if (ISEMPTY  (P1) = false) then
+            begin
+                writeln(p1.obj[p1.j]);
+                POP(p1);
+            end
+        else
+            writeln('Pilha vazia, não é  possível desempilhar! Stack Underflow!');
+    if(i=3) then
+        writeln('Numero total de elementos: ', Q(P1)); 
+UNTIL(i=4);
+
+writeln('Os elementos da pilha sao: ', V(p1));
+end.
