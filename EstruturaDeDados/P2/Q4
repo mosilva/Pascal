@@ -1,0 +1,84 @@
+Program Teste;
+uses crt;
+
+Type    endNODO = ^NODO;
+	NODO = record
+		INFO: integer;
+		PROX: endNODO;
+End;
+
+Var  w,p,q,r: endNODO; num:integer;
+
+
+FUNCTION h(p:endnodo):integer;
+begin
+    w:=nil;
+    write('entre com um numero= ');
+    readln(num);
+    new(w);
+    w^.INFO:=num;
+    w^.prox:=p;
+    num :=0;
+    while (w<>nil) do
+    begin
+      h:= w^.INFO;   
+      writeln('w^.dado=',h);
+      w:=w^.prox;
+      num := num +1;
+    end;
+end;
+    
+PROCEDURE InserirNodo(VAR p:endnodo);
+var cont:integer;
+r,s,q:endnodo;
+begin
+   new(s);
+   cont:=1;
+   s:=p;
+   if(p=nil) then
+     cont:=0
+   else
+     while(s^.prox<>nil) do
+        begin
+           cont:=cont+1;
+           s:=s^.prox;
+        end;
+	new(r);
+	r^.INFO := cont;	
+    r^.PROX := p;
+    p := r;
+end;
+
+begin
+   clrscr;
+   writeln('VAMOS COME€AR!!!');
+   p:=nil;
+   writeln('entre com um numero=');
+   readln(num);
+   new(p);
+   p^.INFO:=num;
+   p^.prox:=nil;
+   q:=p;
+   writeln('entre com um numero=');
+   readln(num);
+
+   while(num<>0) do
+     begin
+      new(r);
+      q^.prox:=r;
+      r^.INFO := num;
+      r^.prox := nil;
+      q:=r;
+      writeln('entre com outro numero=');
+      readln(num);
+    end;
+  q:=p;
+
+InserirNodo(p);
+
+  while (p<>nil) do
+     begin
+         writeln('p^.dado=',p^.INFO);
+         p:=p^.prox;
+    end;     
+end.
