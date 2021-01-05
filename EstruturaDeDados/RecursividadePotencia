@@ -1,0 +1,16 @@
+Program Pot;
+Var n: integer;
+
+FUNCTION potenciaQuadrada (n:integer): integer;
+Begin
+	If (n= 0) or (n=1) then
+		potenciaQuadrada := n
+	Else
+		potenciaQuadrada := n * n;
+End;
+
+begin
+    write ('digite um numero = ');
+    readln(n);
+    write('potencia: ',potenciaQuadrada(n));
+end.
