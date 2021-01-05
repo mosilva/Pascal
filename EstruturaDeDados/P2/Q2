@@ -1,0 +1,90 @@
+Program Teste;
+uses crt;
+
+TYPE VETOR = ARRAY [1 .. 10] OF INTEGER;
+           PILHA = RECORD
+		VET : VETOR;
+		TOPO : INTEGER;
+END;
+VAR P: PILHA; V:VETOR;
+
+
+Var num,res: integer;
+
+
+
+
+
+procedure  INIT (var p:pilha);
+begin   
+    p.topo := 0;
+end;
+
+function ISFULL(p:pilha;max:integer):boolean;
+begin
+    if p.topo = max then
+            ISFULL:= true
+    else 
+        ISFULL:= false;
+end;
+    
+function ISEMPTY(p:pilha):boolean;
+begin
+    if  p.topo = 0 then ISEMPTY := true
+    else ISEMPTY := false;  
+end;    
+
+
+
+procedure PUSH(var p:pilha; ob:integer);
+// adiciona elementos na pilha
+begin
+        p.TOPO :=p.TOPO+1;
+        p.VET[p.TOPO] := ob;
+end;
+
+procedure POP(var p:pilha);
+begin
+    p.TOPO := p.TOPO-1;
+end;
+
+    
+PROCEDURE CriarPilha(V: VETOR; VAR P: PILHA);
+VAR id: integer;
+begin
+    id := 1;
+    INIT(P);
+    repeat
+        num :=  v[id];
+        id := id + 1;
+        PUSH(P,num);
+    until ((v[id] = 0) or(ISFULL(P,10)=true));
+end;
+
+begin
+    res := 1;
+   clrscr;
+   writeln('VAMOS COMECAR!!!');
+   writeln('entre com um numero=');
+   readln(num);
+   v[res] := num;
+   writeln('entre com um numero=');
+   readln(num);
+
+   while(num<>0) do
+     begin
+     res := res + 1;
+     v[res] := num;
+     writeln('entre com outro numero=');
+     readln(num);
+    end;
+
+CriarPilha(v,p);
+
+while (ISEMPTY  (p) = false) do
+    begin
+        writeln(p.VET[p.TOPO]);
+        POP(P);
+    end;
+
+end.
