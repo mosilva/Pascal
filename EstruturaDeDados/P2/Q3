@@ -1,0 +1,138 @@
+program filapilha;
+
+const max = 100;
+
+type pilha = record
+    obj: array[1.. max] of integer;
+    cont: integer;
+end;
+
+type fila = record
+    dados: array[1.. max] of integer;
+    inicio, fim: integer;
+end;
+
+Var p:pilha;
+    num, res: integer;
+    f:fila;
+
+procedure  INIT (var p:pilha);
+begin   
+    p.cont := 0;
+end;
+
+procedure PUSH(var p:pilha; ob:integer);
+// adiciona elementos na pilha
+begin
+        p.cont :=p.cont +1;
+        p.obj[p.cont] := ob;
+end;
+
+procedure POP(var p:pilha);
+begin
+    p.cont := p.cont-1;
+end;
+
+    
+function fvazia(f:fila):boolean;
+begin
+    if f.inicio > f.fim then
+        fvazia := true
+    else
+        fvazia := false;
+end;
+ 
+function fcheia (f:fila):boolean;
+begin
+    if f.fim = max then
+        fcheia := true
+    else
+        fcheia := false;
+ end;
+ 
+procedure fcriar(var f:fila);
+begin
+    f.inicio := 1;
+    f.fim := 0;
+end;
+
+
+function ISFULL(p:pilha;max:integer):boolean;
+begin
+    if p.cont = max then
+            ISFULL:= true
+    else 
+        ISFULL:= false;
+end;
+    
+function ISEMPTY(p:pilha):boolean;
+begin
+    if  p.cont = 0 then ISEMPTY := true
+    else ISEMPTY := false;  
+end;    
+
+
+procedure dequeue(var f:fila);
+
+begin
+    if fvazia(f) then
+        writeln('fila vazia')
+    else
+        begin
+            writeln(f.dados[f.inicio]);
+            f.inicio := f.inicio +1;
+        end;
+    end;
+    
+procedure enqueue(var f:fila;w: integer);
+begin
+    if fcheia (f) then
+        writeln('fila cheia')
+    else
+        begin
+            f.fim := f.fim+1;
+            f.dados[f.fim] := w;
+        end;
+    end;
+
+function qtd(f:fila):integer;
+var count: integer;
+begin
+    count := 0;
+    while (not fvazia(f)) do
+        begin
+        f.inicio := f.inicio +1;
+        count := count +1;
+        end;
+    qtd := count;
+end;
+
+
+
+begin 
+    INIT(P);
+    repeat
+        writeln('Tecle numero ou "0" para sair: ');
+        readln(num);
+        if num = 0 then
+            writeln('saindo do programa')
+        else
+            PUSH(p,num);
+    until ((num = 0)) or (ISFULL(p,max)=true);
+    
+    fcriar(f);
+    while not ISEMPTY(p) do
+        begin 
+            res := p.obj[p.cont];
+            pop(p);
+            if fcheia(f) <> true then
+                enqueue(f,res);
+        end;
+        
+writeln('A quantidade é ', qtd(f));       
+
+    writeln('imprimindo a fila');
+    while (not fvazia(f)) do
+        dequeue(f);
+    readln;
+end.
