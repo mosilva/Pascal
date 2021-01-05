@@ -1,0 +1,87 @@
+Program pilhas;
+//j = topo
+//obj = vet
+//p = pilha	
+
+const max = 3;
+TYPE VETOR = ARRAY [1 .. 3] OF INTEGER;
+PILHA = RECORD
+		VET : VETOR;
+		TOPO : INTEGER;
+END;
+
+VAR P: PILHA;
+    i: integer;
+    objeto:integer;
+
+procedure  INIT (var p:pilha);
+//criar  a pilha
+begin   
+        p.topo := 0;
+end;
+
+
+procedure PUSH(var p:pilha; ob:integer);
+// adiciona elementos na pilha
+begin
+        p.topo :=p.topo +1;
+        p.vet[p.topo] := ob;
+end;
+
+procedure POP(var p:pilha);
+begin
+    p.topo := p.topo-1;
+end;
+
+function ISEMPTY(p:pilha):boolean;
+begin
+    if  p.topo = 0 then ISEMPTY := true
+    else ISEMPTY := false;  
+end;    
+
+function ISFULL(p:pilha;max:integer):boolean;
+begin
+    if p.topo = max then
+            ISFULL:= true
+    else 
+        ISFULL:= false;
+end;
+
+function N(p:pilha):integer;
+var conta: integer;
+begin
+  conta := 0;
+    while (ISEMPTY (p) = false) do
+      begin 
+        if(p.vet[p.topo] < 0) then
+          begin
+            conta:= conta + 1;
+            POP(p);
+          end
+        else POP(p);  
+      end;  
+    N:=conta; 
+end;
+
+    
+begin
+    INIT(p);
+    while (ISFULL(p,max)<> true) do
+        begin
+            readln(objeto);
+            PUSH (p,objeto);
+        end;
+  
+// writeln(p1.obj[p1.j]); 
+writeln(N(p));
+        
+writeln ('saida da pilha');
+
+
+while (ISEMPTY  (P) = false) do
+    begin
+        writeln(p.vet[p.topo]);
+        POP(p);
+    end;
+ 
+end.
