@@ -1,0 +1,42 @@
+//insere um nodo numa lista vazia
+
+Procedure INSEREFIM (var p: Endnodo; v: Integer);
+Begin
+	new(p);
+	p^.dado := v;
+	p.^.Prox  := nil;
+End.	
+
+//Insere um nodo se ele não estiver vazio
+
+Procedure INSEREFIM (var p: Endnodo; v: Integer);
+Var q,r: Endnodo;
+Begin	
+	q := p;
+	while q^.Prox <> nil do
+		q := q^.Prox;
+	new(r);
+	r^.dado := v;	
+r^.Prox  := nil;
+q^.Prox := r;
+End.	
+
+// Juntando os dois
+
+Procedure INSEREFIM (var p: Endnodo; v: Integer);
+Var q,r: Endnodo;
+Begin		
+	new(r);
+	r^.dado := v;	
+r^.Prox  := nil;
+if p = nil then
+	p := r;
+else
+       begin
+	q := p;
+		while q^.Prox <> nil do
+			q := q^.Prox;
+q^.Prox := r;
+                     end;
+End.	
+
