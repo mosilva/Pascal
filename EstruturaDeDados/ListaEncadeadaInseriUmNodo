@@ -1,0 +1,86 @@
+Program Teste;
+uses crt;
+
+Type    endNODO = ^NODO;
+	NODO = record
+		Dado: integer;
+		PROX: endNODO;
+End;
+
+Var  w,p,q,r: endNODO; num:integer;
+
+
+FUNCTION h(p:endnodo):integer;
+var a:endNODO;
+begin
+    w:=nil;
+    write('entre com um numero= ');
+    readln(num);
+    new(w);
+    w^.dado:=num;
+    w^.prox:=p;
+    num :=0;
+    while (w<>nil) do
+    begin
+      h:= w^.dado;   
+      writeln('w^.dado=',h);
+      w:=w^.prox;
+      num := num +1;
+    end;
+end;
+    
+FUNCTION x(p:endnodo):integer;
+var cont:integer;
+   s:endnodo;
+begin
+   cont:=1;
+   s:=p;
+   if(p=nil) then
+     cont:=0
+   else
+     while(s^.prox<>nil) do
+        begin
+           cont:=cont+1;
+           s:=s^.prox;
+        end;
+   x:=cont;
+end;
+
+begin
+   clrscr;
+   writeln('VAMOS COME€AR!!!');
+   p:=nil;
+   writeln('entre com um numero=');
+   readln(num);
+   new(p);
+   p^.dado:=num;
+   p^.prox:=nil;
+   q:=p;
+   writeln('entre com um numero=');
+   readln(num);
+
+   while(num<>0) do
+     begin
+      new(r);
+      q^.prox:=r;
+      r^.Dado := num;
+      r^.prox := nil;
+      q:=r;
+      writeln('entre com outro numero=');
+      readln(num);
+    end;
+  q:=p;
+
+  while (q<>nil) do
+     begin
+         writeln('q^.dado=',q^.dado);
+         q:=q^.prox;
+     end;
+
+writeln('TOTAL DE NODOS=', x(p));
+readln;
+ 
+h(p);
+write('total: ',num);
+
+End.
