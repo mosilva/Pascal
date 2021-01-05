@@ -1,0 +1,39 @@
+// LISTA CIRCULAR
+Procedure INSEREFIM (var p: Endnodo; v: Integer);
+Var q,r: Endnodo;
+Begin		
+	new(r);
+	r^.dado := v;	
+if p = nil then
+	begin
+p := r;
+r^.Prox  := p;
+	end;
+    else
+        begin
+        	q := p;
+       	while q^.prox <> p do		  
+	            q := q^.Prox;
+	q^.Prox  := r;
+	r^.Prox := p;
+        end;
+End;
+
+//Contagem de Nodo
+
+FUNCTION conta(var p: Endnodo): integer;
+Var q: endnodo;
+Begin		
+      conta := 0;
+      if p <> nil then
+	begin
+       		conta := 1;
+       		q  := p;
+		while q^.prox <> p do
+		Begin
+			conta := conta + 1;
+			q := q^.Prox;
+		end;
+end;
+    
+
