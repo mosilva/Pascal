@@ -1,0 +1,17 @@
+Program fat;
+Var x: integer;
+
+Function fatorial (x:integer):integer;
+begin 
+    //writeln (x);
+    if (x = 0) or (x = 1) then 
+        fatorial := 1
+    else 
+        fatorial := x *fatorial(x-1);
+end;
+
+begin
+    write ('digite um numero = ');
+    readln(x);
+    write('fatorial: ',fatorial(x));
+end.
