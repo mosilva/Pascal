@@ -1,0 +1,85 @@
+type inteiro = integer; 
+    ABB = ^nodo;
+    nodo = record
+        dir: ABB;
+        esq: ABB;
+        info: integer;
+end;
+
+var raiz,r,q: ABB;l:string;num,i:integer; valores: array[1..5] of integer;
+
+function Contapares(arvore: ABB): integer;
+var aux: integer;
+begin
+    aux:= 0;
+    if(arvore <> nil) then
+            begin
+            if((arvore^.info MOD 2) = 0) then
+                    aux := aux + 1;
+                  if(arvore^.esq <> nil) then
+                    aux := aux + contapares(arvore^.esq); 
+                  if(arvore^.dir <> nil) then
+                    aux:= aux + contapares(arvore^.dir);
+        end;
+    Contapares:= aux;
+end;
+
+
+begin
+   writeln('VAMOS COME€AR!!!');
+   writeln('Fazendo o vetor');
+   for i := 1 to 4 do
+    begin
+   readln(valores[i]);
+    end;
+   num:=valores[1];
+   new(raiz);
+   raiz^.info:=num;
+   raiz^.dir:=nil;
+   raiz^.esq :=nil;
+   q:=raiz;
+    for i := 2 to 4 do
+    begin
+    while(q^.info > 0) do
+    begin
+    if(valores[i] >=q^.info) then
+     begin
+        if(q^.dir = nil) then
+            begin
+                new(r);
+                q^.dir:=r;
+                r^.info := valores[i];
+                r^.dir := nil;
+                r^.esq := nil;
+                q:=r;
+                q:=raiz;
+                break;
+            end
+        else
+            q := q^.dir;
+    end
+    else 
+        begin
+            if(q^.esq = nil) then
+                begin
+                    writeln;
+                    new(r);
+                    q^.esq:=r;
+                    r^.info := valores[i];
+                    r^.dir := nil;
+                    r^.esq := nil;
+                    q:=r;
+                    q:=raiz;
+                    break;
+                end
+            else 
+                q := q^.esq;
+        end;
+    end; // end do for
+    end;
+
+    
+    writeln(Contapares(raiz))
+    
+    
+end.
